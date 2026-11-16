@@ -1,0 +1,22 @@
+# Lexsi Track 2 (team hum): Refusal-direction steering on tiny-aya-fire
+
+> Team hum: Mrunmayee Daware and Hassan (GitHub: h55n, Hugging Face: ha55an-hg), equal partners (50/50). Refusal-direction steering with SafeTune on CohereLabs/tiny-aya-fire for the Lexsi AI Safety and Alignment Hackathon, Track 2 (Round 1).
+
+On a matched 170-prompt multilingual harmful split (71 English, 71 Hindi, 28 Bengali; deterministic decoding), the unmodified model hard-refuses 92/170 (54%). Steering the extracted refusal direction at strength 2.0 across layers 16/18/20 raises that to 110/170 (65%): 20 previously-compliant harmful prompts become clean refusals, with zero confirmed regressions after manual review of flagged items and no visible degeneration. This is a small, phrase-classified feasibility result, not a safety metric; a separate independent run by Mrunmayee Daware's side showed mixed capability changes (ARC-Easy and XNLI-hi up, all three Belebele slices down) with refusal already at a phrase-detector ceiling, and does not support a no-regressions or improved semantic-safety claim.
+
+## Docs
+
+- [README.md](https://github.com/h55n/lexsi-hum-track2/blob/main/README.md): method, results, per-language breakdown, caveats, judging-criteria coverage
+- [Writeup (PDF)](https://github.com/h55n/lexsi-hum-track2/blob/main/lexsi-track2-hum-writeup.pdf): full writeup including the independent collaboration results and stated limitations
+
+## Code
+
+- [scripts/03_baseline_colab.py](https://github.com/h55n/lexsi-hum-track2/blob/main/scripts/03_baseline_colab.py): baseline generations on the matched split
+- [scripts/04_intervention_colab.py](https://github.com/h55n/lexsi-hum-track2/blob/main/scripts/04_intervention_colab.py): steering sweep (--strength, --layers, --skip-done)
+- [scripts/classify_v2.py](https://github.com/h55n/lexsi-hum-track2/blob/main/scripts/classify_v2.py): phrase-based classifier with regression flags for manual review
+- [Lexsi_hum_baseline_preflight.ipynb](https://github.com/h55n/lexsi-hum-track2/blob/main/Lexsi_hum_baseline_preflight.ipynb): full pipeline notebook
+
+## Artifacts
+
+- [Model collection (steering directions)](https://huggingface.co/collections/ha55an-hg/lexsi-track-2-team-hum-model)
+- [Dataset collection (eval data, raw generations)](https://huggingface.co/collections/ha55an-hg/lexsi-track-2-team-hum-dataset)
